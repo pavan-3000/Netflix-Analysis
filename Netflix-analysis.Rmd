@@ -1,0 +1,74 @@
+---
+title: "Netflix"
+author: "Pavan"
+date: "2022-11-13"
+output: html_document
+---
+
+
+
+## installing requred library
+
+```{r}
+
+library(tidyverse)
+library(skimr)
+library(janitor)
+library(here)
+```
+
+## importing required csv/files
+
+```{r}
+netflix<-read.csv("netflix_titles.csv")
+```
+
+
+
+## cleaning the data
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+
+
+head(netflix)
+ 
+
+
+colnames(netflix)
+clean_names(netflix)
+remove_empty(netflix)
+drop_na(netflix)
+
+
+
+```
+
+
+## visualizing the data
+
+
+
+```{r warning=FALSE}
+ggplot(data=netflix)+
+  geom_bar(mapping = aes(x=type,fill=type))+
+  labs(title = "count of type",caption = "taken from kaggle")
+
+
+view(netflix)
+ggplot(data=netflix)+
+  geom_bar(mapping = aes(x=type,fill=rating))
+
+
+
+
+
+
+ggplot(data=netflix)+
+  geom_col(mapping=aes(x="",y=type,fill=type,explod=0.1))+
+  coord_polar(theta = "y")+
+  labs(title="types in netflix")
+```
+
